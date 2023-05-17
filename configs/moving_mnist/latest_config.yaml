@@ -1,0 +1,31 @@
+# TY4_ResNet18_DeepResConv1_Demo.yaml
+
+system:
+  device: "cuda"
+
+dataset:
+  demo:
+    enable: False
+    length: 2000
+  root: "/home/user/moving-mnist"
+
+model:
+  conv_3d_depth: 2 # ?
+  taylor_order_r: 4 # ?
+  activation_: "lrelu"
+  resnet:
+    model_depth: 18
+
+trainer:
+  optimizer:
+    type: "adam"
+    lr: 0.0001
+  scheduler:
+    type: "plateau"
+    mode: "max"
+    patience: 120 # ?
+    factor: 0.5
+    use_train: True
+    metric: "all_temporal_ssim"
+  log_interval: 50
+
